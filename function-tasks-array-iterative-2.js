@@ -204,18 +204,39 @@ console.groupEnd();
 console.groupCollapsed('1. Atspausdinti visus Informatikos fakulteto studentus');
 {
   // ... sprendimas ir spausdinimas
+  for (let i = 0; i < students.length; i++) {
+    let student = students[i];
+    if (student.faculty === 'Informatikos fakultetas') {
+      console.log(student);
+    }
+  }
+  
 }
 console.groupEnd();
 
 console.groupCollapsed('2. Atspausdinti visus Chemijos fakulteto studentus');
 {
   // ... sprendimas ir spausdinimas
+  for (let i = 0; i < students.length; i++) {
+    let student = students[i];
+    if (student.faculty === 'Chemijos fakultetas') {
+      console.log(student);
+    }
+  }
+  
 }
 console.groupEnd();
 
 console.groupCollapsed('3. Atspausdinti visus Elektros ir elektronikos fakulteto studentus');
 {
   // ... sprendimas ir spausdinimas
+  for (let i = 0; i < students.length; i++) {
+    let student = students[i];
+    if (student.faculty === 'Elektros ir elektronikos fakultetas') {
+      console.log(student);
+    }
+  }
+  
 }
 console.groupEnd();
 
@@ -223,46 +244,133 @@ console.groupEnd();
 console.groupCollapsed('4. Atspausdinti visų Elektros ir elektronikos fakulteto studentų vidurkius');
 {
   // ... sprendimas ir spausdinimas
+  let electricalEngineeringStudents = students.filter(student => student.faculty === 'Elektros ir elektronikos fakultetas');
+
+for (let i = 0; i < electricalEngineeringStudents.length; i++) {
+  let student = electricalEngineeringStudents[i];
+  let totalMarks = 0;
+  let totalCredits = 0;
+
+  for (let j = 0; j < student.modules.length; j++) {
+    let module = student.modules[j];
+    totalMarks += module.credits * average(module.marks);
+    totalCredits += module.credits;
+  }
+
+  let averageMark = totalMarks / totalCredits;
+  console.log(`Student: ${student.name} ${student.surname} - Average mark: ${averageMark}`);
+}
+
+function average(marks) {
+  let sum = 0;
+  for (let i = 0; i < marks.length; i++) {
+    sum += marks[i];
+  }
+  return sum / marks.length;
+}
+
 }
 console.groupEnd();
 
 console.groupCollapsed('5. Atspausdinti tik pirmo kurso studentus');
 {
   // ... sprendimas ir spausdinimas
+  
+  let firstYearStudents = students.filter(student => student.course === 1);
+for (let i = 0; i < firstYearStudents.length; i++) {
+  console.log(firstYearStudents[i]);
+}
 }
 console.groupEnd();
 
 console.groupCollapsed('6. Atspausdinti tik antro kurso studentus');
 {
   // ... sprendimas ir spausdinimas
+
+  let secondYearStudents = students.filter(student => student.course === 2);
+for (let i = 0; i < secondYearStudents.length; i++) {
+  console.log(secondYearStudents[i]);
+}
+
 }
 console.groupEnd();
 
 console.groupCollapsed('7. Atspausdinti tik trečio kurso studentus');
 {
   // ... sprendimas ir spausdinimas
+
+  let thirdYearStudents = students.filter(student => student.course === 3);
+for (let i = 0; i < thirdYearStudents.length; i++) {
+  console.log(thirdYearStudents[i]);
+}
+
 }
 console.groupEnd();
 
 console.groupCollapsed('8. Atspausdinti tik ketvirto kurso studentus');
 {
   // ... sprendimas ir spausdinimas
+
+  let fourthYearStudents = students.filter(student => student.course === 4);
+  for (let i = 0; i < fourthYearStudents.length; i++) {
+    console.log(fourthYearStudents[i]);
+  }
 }
 console.groupEnd();
 
 console.groupCollapsed('9. Atspausdinti visų Informatikos fakulteto studentų vidurkius');
 {
   // ... sprendimas ir spausdinimas
+  for (const student of students) {
+    if (student.faculty === 'Informatikos fakultetas') {
+      const averageMarks = student.modules.map(module => {
+        const totalMarks = module.marks.reduce((acc, mark) => acc + mark, 0);
+        return {
+          title: module.title,
+          averageMark: totalMarks / module.marks.length
+        };
+      });
+  
+      console.log(`Average marks for ${student.name} ${student.surname}:`);
+      console.log(averageMarks);
+    }
+  }
+  
 }
 console.groupEnd();
 
 console.groupCollapsed('10. Atspausdinti visų Chemijos fakulteto studentų vidurkius');
 {
   // ... sprendimas ir spausdinimas
+  for (const student of students) {
+    if (student.faculty === 'Chemijos fakultetas') {
+      const averageMarks = student.modules.map(module => {
+        const totalMarks = module.marks.reduce((acc, mark) => acc + mark, 0);
+        return {
+          title: module.title,
+          averageMark: totalMarks / module.marks.length
+        };
+      });
+  
+      console.log(`Average marks for ${student.name} ${student.surname}:`);
+      console.log(averageMarks);
+    }
+  }
+  
 }
 console.groupEnd();
 
 console.groupCollapsed('11. Iš students masyvo atrinkti ir atspausdinti visų studentų vidurkius');
 {
   // ... sprendimas ir spausdinimas
+  const averageMarks = students.flatMap(student => student.modules.map(module => {
+    const totalMarks = module.marks.reduce((acc, mark) => acc + mark, 0);
+    return {
+      title: module.title,
+      averageMark: totalMarks / module.marks.length
+    };
+  }));
+  
+  console.log(averageMarks);
+  
 }

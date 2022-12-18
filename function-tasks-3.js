@@ -423,14 +423,16 @@ console.group("21. Sukurkite funkciją, kuri ištrintų pirmą surastą 'a' raid
 {
   function removeFirstLetterA(str) {
     // code ...
+      return str.replace('a', '');
+    
   }
-  // console.log('---');
-  // console.log({
-  //   'labas': removeFirstLetterA('labas'),
-  //   'kempiniukas': removeFirstLetterA('kempiniukas'),
-  //   '123123': removeFirstLetterA('123123'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'labas': removeFirstLetterA('labas'),
+    'kempiniukas': removeFirstLetterA('kempiniukas'),
+    '123123': removeFirstLetterA('123123'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -439,46 +441,60 @@ console.group("22. Sukurkite funkciją, kuri ištrintų paskutinę surastą 'a' 
 {
   function removeLastLetterA(str) {
     // code ...
+      let modifiedWord = str;
+      let lastIndex = modifiedWord.lastIndexOf('a');
+      if (lastIndex !== -1) {
+        modifiedWord = modifiedWord.substring(0, lastIndex) + modifiedWord.substring(lastIndex + 1);
+      }
+      return modifiedWord;
+    
   }
-  // console.log('---');
-  // console.log({
-  //   'labas': removeLastLetterA('labas'),
-  //   'kempiniukas': removeLastLetterA('kempiniukas'),
-  //   '123123': removeLastLetterA('123123'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'labas': removeLastLetterA('labas'),
+    'kempiniukas': removeLastLetterA('kempiniukas'),
+    '123123': removeLastLetterA('123123'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
 
 console.group("23. Sukurkite funkciją, kuri ištrintų visus 'a' raidės pasikartojimus žodyje");
 {
-  function removeAllOccurencesOfLetterA(str) {
+  function removeAllA(str) {
     // code ...
+      return str.replace(/a/g, '');
+    
+    
   }
-  // console.log('---');
-  // console.log({
-  //   'labas': removeAllOccurencesOfLetterA('labas'),
-  //   'kempiniukas': removeAllOccurencesOfLetterA('kempiniukas'),
-  //   '123123': removeAllOccurencesOfLetterA('123123'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'labas': removeAllA('labas'),
+    'kempiniukas': removeAllA('kempiniukas'),
+    '123123': removeAllA('123123'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
 
 console.group("24. Sukurkite funkciją, kuri ištrintų visus, vartotojo įvestos raidės pasikartojimus žodyje");
 {
-  function removeAllOccurencesOfLetter(str, letter) {
+  function removeAllOfLetter(str, letter) {
     // code ...
+      let regex = new RegExp(letter, 'g');
+      return str.replace(regex, '');
+    
+    
   }
-  // console.log('---');
-  // console.log({
-  //   'labas, a': removeAllOccurencesOfLetter('labas', 'a'),
-  //   'kempiniukas, i': removeAllOccurencesOfLetter('kempiniukas', 'i'),
-  //   '123123, 3': removeAllOccurencesOfLetter('123123', '3'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'labas, a': removeAllOfLetter('labas', 'a'),
+    'kempiniukas, i': removeAllOfLetter('kempiniukas', 'i'),
+    '123123, 3': removeAllOfLetter('123123', '3'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -490,11 +506,18 @@ console.group("25. Sukurkite funkciją, kuri pirmu parametru priimtų žodį, o 
 {
   function filterLetters(str, lettersToRemove) {
     // code ...
+      let modifiedWord = "";
+      for (let i = 0; i < str.length; i++) {
+        if (!lettersToRemove.includes(str[i])) {
+          modifiedWord += str[i];
+        }
+      }
+      return modifiedWord;    
   }
-  // console.log('---');
-  // const str = filterLetters('Brangakmienio paveikslas', ['a', 'i']);
-  // console.log(str);
-  // console.log('---');
+  console.log('---');
+  const str = filterLetters('Brangakmienio paveikslas', ['a', 'i']);
+  console.log(str);
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -503,14 +526,18 @@ console.group("26. Sukurkite funkciją, kuri pirmu parametrų priimą sakinį, k
 {
   function replaceSpaceWithDash(str) {
     // code ...
+
+    let modifiedSentence = str.replace(/ /g, "-");
+  
+    return modifiedSentence;
   }
-  // console.log('---');
-  // console.log({
-  //   'viens du trys': replaceSpaceWithDash('viens du trys'),
-  //   'as tave myliu': replaceSpaceWithDash('as tave myliu'),
-  //   'Bairis seniuk': replaceSpaceWithDash('Bairis seniuk'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'viens du trys': replaceSpaceWithDash('viens du trys'),
+    'as tave myliu': replaceSpaceWithDash('as tave myliu'),
+    'Bairis seniuk': replaceSpaceWithDash('Bairis seniuk'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -519,14 +546,22 @@ console.group("27. Sukurkite funkciją, kuri pirmu parametru priima sakinį, ir 
 {
   function capitalize(str) {
     // code ...
+    let words = str.split(" ");
+    for (let i = 0; i < words.length; i++) {
+    let firstChar = words[i][0];
+    let uppercaseChar = firstChar.toUpperCase();
+    words[i] = uppercaseChar + words[i].substring(1);
+    }
+    let modifiedSentence = words.join(" ");
+    return modifiedSentence;
   }
-  // console.log('---');
-  // console.log({
-  //   'viens du trys': capitalize('viens du trys'),
-  //   'as tave myliu': capitalize('as tave myliu'),
-  //   'Bairis seniuk': capitalize('Bairis seniuk'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'viens du trys': capitalize('viens du trys'),
+    'as tave myliu': capitalize('as tave myliu'),
+    'Bairis seniuk': capitalize('Bairis seniuk'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -535,12 +570,15 @@ console.group("28. Sukurkite funkciją, kuri atspausdina žodį atvirkščiai 'a
 {
   function strReverse(str) {
     // code ...
+    for (let i = str.length - 1; i >= 0; i--) {
+    console.log(str[i]);
+    }
   }
-  // console.log('---');
-  // strReverse('viens du trys');
-  // strReverse('as tave myliu');
-  // strReverse('Bairis seniuk');
-  // console.log('---');
+  console.log('---');
+  strReverse('viens du trys');
+  strReverse('as tave myliu');
+  strReverse('Bairis seniuk');
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -563,14 +601,14 @@ console.group("29. Sukurkite funkciją, kuri grąžina <true>, jeigu žodis yra 
     }
     return true;
   }
-  // console.log('---');
-  // console.log({
-  //   'mama': isPalyndrome('mama'),
-  //   'mamam': isPalyndrome('mamam'),
-  //   '123321': isPalyndrome('123321'),
-  //   '123456': isPalyndrome('123456'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'mama': isPalyndrome('mama'),
+    'mamam': isPalyndrome('mamam'),
+    '123321': isPalyndrome('123321'),
+    '123456': isPalyndrome('123456'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -633,13 +671,14 @@ console.group("31. Sukurkite funkciją, kuri pirmu parametru priima sakinį ir s
 {
   function splitSentence(sentence) {
     // code ...
+    return sentence.split(' ');
   }
-  // console.log('---');
-  // console.log({
-  //   'Labas aš Jonas': splitSentence('Labas aš Jonas'),
-  //   'Kėgliai yra gerai': splitSentence('Kėgliai yra gerai'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    'Labas aš Jonas': splitSentence('Labas aš Jonas'),
+    'Kėgliai yra gerai': splitSentence('Kėgliai yra gerai'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
@@ -653,13 +692,14 @@ console.group("32. Sukurkite funkciją, kuri pirmu parametru priimą <string>'ą
 {
   function explode(str, separator) {
     // code ...
+    return str.split(separator);
   }
-  // console.log('---');
-  // console.log({
-  //   "'Man patinka sniegas', ' '": explode('Man patinka sniegas', ' '),
-  //   "'home/about/13', '/'": explode('home/about/13', '/'),
-  // })
-  // console.log('---');
+  console.log('---');
+  console.log({
+    "'Man patinka sniegas', ' '": explode('Man patinka sniegas', ' '),
+    "'home/about/13', '/'": explode('home/about/13', '/'),
+  })
+  console.log('---');
 }
 console.groupEnd();
 console.log();
